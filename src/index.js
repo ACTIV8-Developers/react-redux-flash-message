@@ -28,7 +28,7 @@ export function publishFlashMessage(dispatch, text, duration, onClick = noop, da
 export const flashMessageReducer = (state = {messages: []}, action) => {
     switch (action.type) {
         case "ADD_MESSAGE": {
-            const messages = [...state.messages, action.flashMessage];
+            const messages = Array.isArray(state.messages) ? [...state.messages, action.flashMessage] : [action.flashMessage];
 
             return { ...state, messages };
         }
